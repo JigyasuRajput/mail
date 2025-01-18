@@ -14,6 +14,18 @@
     </head>
     <body>
         <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <div class="navbar-brand">
+                        ✉️ <span style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">Mail</span>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <button id="theme-toggle" class="theme-toggle-btn">
+                            <span class="theme-toggle-icon">🌙</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
             {% block body %}    
             {% endblock %}
         </div>

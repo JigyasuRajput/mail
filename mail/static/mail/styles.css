@@ -1,15 +1,131 @@
 :root {
-    --primary: #8B5CF6;
-    --secondary: #EC4899;
-    --background: #F3F4F6;
-    --dark: #1F2937;
-    --light: #FFFFFF;
+    --primary: #9333EA;
+    --secondary: #4F46E5;
+    --accent: #A78BFA;
+    --background: #F8F7FF;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --text-color: #1F1F1F;
+    --border-color: rgba(147, 51, 234, 0.1);
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1);
+    --gradient: linear-gradient(135deg, #9333EA, #4F46E5);
+    --hover-gradient: linear-gradient(135deg, #4F46E5, #9333EA);
+}
+
+[data-theme="dark"] {
+    --background: #0F172A;
+    --card-bg: rgba(30, 41, 59, 0.9);
+    --text-color: #FFFFFF;
+    --border-color: rgba(147, 51, 234, 0.2);
+    --nav-bg: rgba(30, 41, 59, 0.9);
+    --box-shadow: 0 8px 32px rgba(79, 70, 229, 0.2);
+}
+
+/* Add smooth transition for all color changes */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme toggle button styling */
+.theme-toggle-btn {
+    background: var(--gradient);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: auto;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--hover-gradient);
+    transform: rotate(360deg) scale(1.1);
+}
+
+.theme-toggle-icon {
+    font-size: 1.2rem;
+}
+
+/* Dark mode specific enhancements */
+[data-theme="dark"] .email-box {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to right, rgba(147, 51, 234, 0.05), rgba(79, 70, 229, 0.05));
+}
+
+[data-theme="dark"] .btn-outline-secondary {
+    color: #D1D5DB;
+    border-color: #4B5563;
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover {
+    background-color: #374151;
+    color: #F9FAFB;
+}
+
+[data-theme="dark"] .form-control {
+    background-color: #1F2937;
+    border-color: #374151;
+}
+
+[data-theme="dark"] .form-control:focus {
+    background-color: #2D3748;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25);
+}
+
+[data-theme="dark"] .email-box:hover {
+    box-shadow: 0 8px 20px -8px rgba(139, 92, 246, 0.3);
+}
+
+[data-theme="dark"] .status-read {
+    background: #374151;
+    color: #D1D5DB;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: #1F2937;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    border-color: #1F2937;
+}
+
+/* Update heading colors for dark mode */
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] .email-detail-subject,
+[data-theme="dark"] #compose-view h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .metadata-label {
+    color: var(--secondary-text);
+}
+
+/* Update dark mode email detail colors */
+[data-theme="dark"] .email-detail-body {
+    color: var(--text-color);
+}
+
+/* Fix border colors in dark mode */
+[data-theme="dark"] .email-header {
+    border-bottom-color: var(--border-color);
 }
 
 body {
-    background-color: var(--background);
+    background: var(--background);
+    background-image: 
+        radial-gradient(circle at 0% 0%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(79, 70, 229, 0.15) 0%, transparent 50%);
+    backdrop-filter: blur(10px);
     font-family: 'Inter', -apple-system, sans-serif;
-    color: var(--dark);
+    color: var(--text-color);
 }
 
 .container {
@@ -44,14 +160,17 @@ textarea:focus {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white !important;
+    background: var(--gradient);
     border: none;
+    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+    transition: all 0.3s ease;
+    color: white !important;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 15px rgba(139, 92, 246, 0.3);
+    background: var(--hover-gradient);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(147, 51, 234, 0.4);
 }
 
 .email-list {
@@ -146,12 +265,17 @@ textarea:focus {
     padding: 0.75rem 1rem;
     margin-bottom: 1rem;
     transition: all 0.3s ease;
+    background-color: var(--email-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
 }
 
 .form-control:focus {
     border-color: var(--primary);
     box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.2);
     outline: none;
+    background-color: var(--email-bg);
+    color: var(--text-color);
 }
 
 textarea.form-control {
@@ -178,33 +302,45 @@ textarea.form-control {
 
 /* Email view styling */
 #emails-view {
-    background: var(--light);
+    background: var(--email-bg);
     border-radius: 16px;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
     padding: 1.5rem;
     margin: 1.5rem 0;
     overflow-y: auto;
     scrollbar-gutter: stable;
+    color: var(--text-color);
 }
 
 .email-box {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow);
+    transform: translateY(0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid #E5E7EB;
     border-radius: 12px;
     padding: 1.25rem;
     margin-bottom: 1rem;
-    transition: all 0.3s ease;
     cursor: pointer;
     display: grid;
     grid-template-columns: auto 150px;
     gap: 1rem;
     align-items: center;
-    background: white;
+    background: var(--email-bg);
+    background-color: var(--email-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+    animation: slideIn 0.5s ease forwards;
+    animation-delay: calc(var(--index) * 0.1s);
 }
 
 .email-box:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px -8px rgba(139, 92, 246, 0.25);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(147, 51, 234, 0.2);
     border-color: var(--primary);
+    background-color: var(--hover-bg);
 }
 
 .email-content {
@@ -217,12 +353,14 @@ textarea.form-control {
     font-weight: 600;
     color: var(--dark);
     font-size: 1.1rem;
+    color: var(--email-text);
 }
 
 .email-subject {
     color: var(--dark);
     font-weight: 500;
     margin-bottom: 0.25rem;
+    color: var(--email-text);
 }
 
 .email-body-preview {
@@ -235,6 +373,7 @@ textarea.form-control {
     overflow: hidden;
     max-height: 100px;
     overflow-y: auto;
+    color: var(--secondary-text);
 }
 
 .email-metadata {
@@ -245,6 +384,10 @@ textarea.form-control {
 }
 
 .email-timestamp {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
     color: #6B7280;
     font-size: 0.875rem;
     white-space: nowrap;
@@ -259,8 +402,13 @@ textarea.form-control {
 }
 
 .status-unread {
-    background: rgba(139, 92, 246, 0.1);
-    color: var(--primary);
+    background: var(--gradient);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(147, 51, 234, 0.2);
 }
 
 .status-read {
@@ -277,6 +425,8 @@ textarea.form-control {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     scrollbar-gutter: stable;
+    background-color: var(--email-bg);
+    color: var(--text-color);
 }
 
 .email-header {
@@ -312,12 +462,17 @@ textarea.form-control {
 
 /* Compose view styling */
 #compose-view {
-    background: var(--light);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow);
     border-radius: 16px;
     padding: 2rem;
     margin-top: 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.5s ease;
+    background-color: var(--email-bg);
+    color: var(--text-color);
+    background: linear-gradient(to bottom right, rgba(147, 51, 234, 0.05), rgba(79, 70, 229, 0.05));
 }
 
 #compose-view h3 {
@@ -328,9 +483,21 @@ textarea.form-control {
 
 /* Headings */
 h2 {
-    color: var(--dark);
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.5px;
     margin-bottom: 1.5rem;
     font-weight: 700;
+}
+
+h3 {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
 /* Links */
@@ -377,8 +544,7 @@ div.message {
 
 /* Custom Scrollbar Styling */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -387,9 +553,9 @@ div.message {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: var(--gradient);
     border-radius: 10px;
-    border: 2px solid #F3F4F6;
+    border: 2px solid var(--background);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -405,4 +571,29 @@ div.message {
 /* Make scroll behavior smooth throughout the app */
 html {
     scroll-behavior: smooth;
+}
+
+/* Navbar styling */
+.navbar {
+    background: var(--nav-bg) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    margin: 1rem 0;
+    padding: 1rem;
+    box-shadow: var(--box-shadow);
+}
+
+/* Email animations */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Add emoji decorations */
+.email-subject::before {
+    content: '💫 ';
+}
+
+.unread::before {
+    content: '🦉 ';
 }
