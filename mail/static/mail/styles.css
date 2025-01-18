@@ -1,24 +1,26 @@
 :root {
-    --primary: #9333EA;
-    --secondary: #4F46E5;
-    --accent: #A78BFA;
-    --background: #F8F7FF;
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --text-color: #1F1F1F;
-    --border-color: rgba(147, 51, 234, 0.1);
-    --nav-bg: rgba(255, 255, 255, 0.9);
-    --box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1);
-    --gradient: linear-gradient(135deg, #9333EA, #4F46E5);
-    --hover-gradient: linear-gradient(135deg, #4F46E5, #9333EA);
+    --primary: #8B5CF6;
+    --secondary: #6D28D9;
+    --accent: #C4B5FD;
+    --background: #FAFAFE;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-color: #374151;
+    --border-color: rgba(139, 92, 246, 0.1);
+    --nav-bg: rgba(255, 255, 255, 0.95);
+    --box-shadow: 0 8px 32px rgba(139, 92, 246, 0.08);
+    --gradient: linear-gradient(135deg, #8B5CF6, #6D28D9);
+    --hover-gradient: linear-gradient(135deg, #6D28D9, #8B5CF6);
+    --secondary-text: #6B7280;
 }
 
 [data-theme="dark"] {
-    --background: #0F172A;
-    --card-bg: rgba(30, 41, 59, 0.9);
-    --text-color: #FFFFFF;
-    --border-color: rgba(147, 51, 234, 0.2);
-    --nav-bg: rgba(30, 41, 59, 0.9);
-    --box-shadow: 0 8px 32px rgba(79, 70, 229, 0.2);
+    --background: #1E1B4B;
+    --card-bg: rgba(30, 41, 59, 0.95);
+    --text-color: #F3F4F6;
+    --border-color: rgba(139, 92, 246, 0.2);
+    --nav-bg: rgba(30, 41, 59, 0.95);
+    --box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+    --secondary-text: #CBD5E1;
 }
 
 /* Add smooth transition for all color changes */
@@ -121,8 +123,8 @@
 body {
     background: var(--background);
     background-image: 
-        radial-gradient(circle at 0% 0%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 100% 100%, rgba(79, 70, 229, 0.15) 0%, transparent 50%);
+        radial-gradient(circle at 0% 0%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(109, 40, 217, 0.08) 0%, transparent 50%);
     backdrop-filter: blur(10px);
     font-family: 'Inter', -apple-system, sans-serif;
     color: var(--text-color);
@@ -202,7 +204,8 @@ textarea:focus {
 }
 
 .email-timestamp {
-    color: #6B7280;
+    color: var(--secondary-text);
+    font-weight: 500;
     font-size: 0.875rem;
 }
 
@@ -316,10 +319,9 @@ textarea.form-control {
     background: var(--card-bg);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 4px 6px rgba(139, 92, 246, 0.05);
     transform: translateY(0);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid #E5E7EB;
     border-radius: 12px;
     padding: 1.25rem;
     margin-bottom: 1rem;
@@ -337,8 +339,8 @@ textarea.form-control {
 }
 
 .email-box:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(147, 51, 234, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.1);
     border-color: var(--primary);
     background-color: var(--hover-bg);
 }
@@ -364,7 +366,7 @@ textarea.form-control {
 }
 
 .email-body-preview {
-    color: #6B7280;
+    color: var(--secondary-text);
     font-size: 0.9rem;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -373,7 +375,7 @@ textarea.form-control {
     overflow: hidden;
     max-height: 100px;
     overflow-y: auto;
-    color: var(--secondary-text);
+    opacity: 0.9;
 }
 
 .email-metadata {
@@ -385,10 +387,12 @@ textarea.form-control {
 
 .email-timestamp {
     background: var(--gradient);
+    background-clip: text;
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-weight: 600;
-    color: #6B7280;
+    font-weight: 500;
+    color: var(--secondary-text);
     font-size: 0.875rem;
     white-space: nowrap;
 }
@@ -408,12 +412,12 @@ textarea.form-control {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
-    box-shadow: 0 2px 10px rgba(147, 51, 234, 0.2);
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
 }
 
 .status-read {
     background: #F3F4F6;
-    color: #6B7280;
+    color: var(--secondary-text);
 }
 
 /* Single email view */
@@ -472,7 +476,10 @@ textarea.form-control {
     animation: fadeIn 0.5s ease;
     background-color: var(--email-bg);
     color: var(--text-color);
-    background: linear-gradient(to bottom right, rgba(147, 51, 234, 0.05), rgba(79, 70, 229, 0.05));
+    background: linear-gradient(to bottom right, 
+        rgba(139, 92, 246, 0.03), 
+        rgba(109, 40, 217, 0.03)
+    );
 }
 
 #compose-view h3 {
@@ -484,20 +491,26 @@ textarea.form-control {
 /* Headings */
 h2 {
     background: var(--gradient);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
     letter-spacing: -0.5px;
     margin-bottom: 1.5rem;
     font-weight: 700;
+    color: var(--text-color);
+    opacity: 0.95;
 }
 
 h3 {
     background: var(--gradient);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
     letter-spacing: -0.5px;
+    color: var(--text-color);
+    opacity: 0.95;
 }
 
 /* Links */
@@ -580,7 +593,7 @@ html {
     border-radius: 16px;
     margin: 1rem 0;
     padding: 1rem;
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.06);
 }
 
 /* Email animations */
